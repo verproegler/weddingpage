@@ -261,6 +261,39 @@
 
     .btn:hover { background: #6a5238; }
 
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      margin-top: 4px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #555;
+      font-weight: 300;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #9c8a72;
+      flex-shrink: 0;
+    }
+
+    .rsvp-label {
+      font-size: 0.82rem;
+      color: #999;
+      text-align: left;
+      font-weight: 300;
+      margin-bottom: -4px;
+    }
+
     .map-wrap {
       margin-top: 20px;
       border-radius: 10px;
@@ -332,6 +365,8 @@
     <a href="#ablauf">Ablauf</a>
     <a href="#menue">Menü</a>
     <a href="#anfahrt">Anfahrt</a>
+    <a href="#unterkuenfte">Unterkünfte</a>
+    <a href="#wunschliste">Wunschliste</a>
     <a href="#rueckmeldung">Rückmeldung</a>
   </nav>
 
@@ -411,6 +446,22 @@
         </iframe>
       </div>
       <a class="map-link" href="https://maps.google.com/?q=Weingut+Steinm%C3%BChle+Osthofen" target="_blank">In Google Maps öffnen →</a>
+      <p style="margin-top:24px;font-size:0.88rem;color:#888;font-weight:300;line-height:1.7">
+        <strong style="color:#7a6248;font-weight:400">Parken:</strong> Direkt vor Ort sind nur begrenzt Stellplätze vorhanden.<br>
+        Wir empfehlen, auf den <strong style="font-weight:400">Stärkmühlweg</strong> auszuweichen.
+      </p>
+    </div>
+
+    <div class="section" id="unterkuenfte">
+      <h2>Unterkünfte</h2>
+      <div class="divider"></div>
+      <div class="menu-placeholder">Empfehlungen für Übernachtungsmöglichkeiten folgen in Kürze.</div>
+    </div>
+
+    <div class="section" id="wunschliste">
+      <h2>Wunschliste</h2>
+      <div class="divider"></div>
+      <div class="menu-placeholder">Unsere Wunschliste folgt in Kürze.</div>
     </div>
 
     <div class="section rsvp-box" id="rueckmeldung">
@@ -420,11 +471,18 @@
       <div data-fs-success class="fs-success">Danke für eure Rückmeldung! Wir freuen uns auf euch.</div>
       <div data-fs-error></div>
       <form id="rsvp-form" class="rsvp-form" action="https://formspree.io/f/xaqlapbz" method="POST">
-        <input type="text" name="name" placeholder="Euer Name" required data-fs-field>
+        <input type="text" name="name" placeholder="Dein/Euer Name" required data-fs-field>
         <span data-fs-error="name"></span>
-        <textarea name="message" placeholder="Eure Nachricht (z. B. ob ihr kommt, …)" data-fs-field></textarea>
+        <p class="rsvp-label">Bitte trage ein, für wie viele Personen du den Eintrag machst.</p>
+        <input type="number" name="anzahl" placeholder="Anzahl der Gäste" min="1" value="1" data-fs-field>
+        <p class="rsvp-label">Willst du uns noch etwas sagen?</p>
+        <textarea name="message" placeholder="Deine Nachricht an uns:" data-fs-field></textarea>
         <span data-fs-error="message"></span>
-        <button type="submit" class="btn" data-fs-submit-btn>Rückmeldung senden</button>
+        <div class="radio-group">
+          <label><input type="radio" name="antwort" value="Zusage" required> Wir/Ich komme/n gerne.</label>
+          <label><input type="radio" name="antwort" value="Absage"> Leider können wir/ich nicht kommen.</label>
+        </div>
+        <button type="submit" class="btn" data-fs-submit-btn>Absenden</button>
       </form>
     </div>
 
