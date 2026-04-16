@@ -127,39 +127,44 @@
 
     .tl-item {
       display: grid;
-      grid-template-columns: 80px 1px 1fr;
-      gap: 0 20px;
-      padding-bottom: 32px;
+      grid-template-columns: 80px 28px 1fr;
+      gap: 0 12px;
     }
 
-    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item:last-child .tl-time,
+    .tl-item:last-child .tl-content { padding-bottom: 0; }
 
     .tl-time {
       font-size: 0.8rem;
       color: #657d65;
       letter-spacing: 0.05em;
       padding-top: 2px;
+      padding-bottom: 32px;
       text-align: right;
     }
 
     .tl-line {
-      background: #cbd2b9;
       position: relative;
+      display: flex;
+      justify-content: center;
     }
 
-    .tl-line::before {
+    .tl-line::after {
       content: '';
       position: absolute;
-      top: 6px;
+      top: 11px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #657d65;
+      width: 1px;
+      background: #cbd2b9;
     }
 
-    .tl-content { padding-top: 0; }
+    .tl-item:last-child .tl-line::after { display: none; }
+
+    .tl-line svg { position: relative; z-index: 1; }
+
+    .tl-content { padding-top: 2px; padding-bottom: 32px; }
     .tl-content strong { font-size: 0.95rem; font-weight: 400; color: #454d31; }
     .tl-content span { display: block; font-size: 0.85rem; color: #888; margin-top: 2px; font-weight: 300; }
 
@@ -172,6 +177,53 @@
     }
 
     /* ── Menü placeholder ── */
+    /* ── Countdown ── */
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #edf0ea;
+      border: 1px solid #cbd2b9;
+      border-radius: 10px;
+      padding: 16px 20px;
+      min-width: 72px;
+    }
+
+    .countdown-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #454d31;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #879a84;
+      margin-top: 6px;
+    }
+
+    .countdown-sub {
+      margin-top: 20px;
+      font-size: 0.85rem !important;
+      color: #888 !important;
+      font-weight: 300 !important;
+      font-style: italic;
+    }
+
+    @media (max-width: 540px) {
+      .anfahrt-grid { grid-template-columns: 1fr; }
+    }
+
     .menu-placeholder {
       border: 1px dashed #879a84;
       border-radius: 10px;
@@ -526,6 +578,136 @@
       color: #657d65;
     }
 
+    /* ── Header Intro ── */
+    .header-intro {
+      max-width: 480px;
+      margin: 0 auto 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .header-intro p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #666;
+      font-weight: 300;
+    }
+
+    /* ── Kontakt ── */
+    .kontakt-card {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #edf0ea;
+      border: 1px solid #cbd2b9;
+      border-radius: 10px;
+      padding: 24px 32px;
+      font-size: 0.88rem;
+      color: #555;
+      font-weight: 300;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .kontakt-card strong {
+      color: #454d31;
+      font-weight: 500;
+    }
+
+    .kontakt-card a {
+      color: #657d65;
+      text-decoration: none;
+    }
+
+    .kontakt-card a:hover { color: #3f5840; }
+
+    /* ── Trauzeugen ── */
+    .trauzeugen-grid {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .trauzeuge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 200px;
+    }
+
+    .trauzeuge-foto {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border: 3px solid #cbd2b9;
+      flex-shrink: 0;
+    }
+
+    .trauzeuge-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #454d31;
+    }
+
+    .trauzeuge-card {
+      background: #edf0ea;
+      border: 1px solid #cbd2b9;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      color: #666;
+      font-weight: 300;
+      line-height: 1.6;
+      text-align: center;
+      width: 100%;
+    }
+
+    .trauzeuge-card a {
+      color: #657d65;
+      text-decoration: none;
+    }
+
+    .trauzeuge-card a:hover { color: #3f5840; }
+
+    /* ── Header Photo ── */
+    .header-photo-wrap {
+      position: relative;
+      width: calc(100% + 48px);
+      margin-left: -24px;
+      margin-right: -24px;
+      height: 480px;
+      overflow: hidden;
+      margin-top: 0;
+      margin-bottom: 32px;
+    }
+
+    .header-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(transparent, #f5f7f2);
+      pointer-events: none;
+    }
+
+    .header-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
     /* smooth scroll */
     html { scroll-behavior: smooth; }
 
@@ -538,12 +720,16 @@
 
   <nav>
     <a href="#top">Start</a>
+    <a href="#countdown">Countdown</a>
     <a href="#ablauf">Ablauf</a>
+    <a href="#anfahrt">Locations</a>
     <a href="#menue">Menü</a>
-    <a href="#anfahrt">Anfahrt</a>
     <a href="#unterkuenfte">Unterkünfte</a>
+    <a href="#dresscode">Dresscode</a>
     <a href="#wunschliste">Wunschliste</a>
+    <a href="#trauzeugen">Trauzeugen</a>
     <a href="#rueckmeldung">Rückmeldung</a>
+    <a href="#kontakt">Kontakt</a>
   </nav>
 
   <header id="top">
@@ -552,14 +738,50 @@
     <p class="yeah">Yeah!</p>
     <p class="date">12. September 2026 · Steinmühle Osthofen</p>
     <div class="divider"></div>
-    <p style="font-size:0.95rem;color:#888;font-weight:300">Wir freuen uns, diesen besonderen Tag mit euch zu feiern.</p>
+    <div class="header-photo-wrap">
+      <img src="./foto_web.jpg" alt="Julia & Yannick" class="header-photo">
+    </div>
+    <div class="header-intro">
+      <p>Wir können es kaum erwarten, diesen Tag mit euch zu feiern!</p>
+      <p>Am 12. September 2026 geben wir uns im kleinen Familienkreis in Alzey das Ja-Wort und feiern anschließend mit euch in der Steinmühle in Osthofen.</p>
+      <p>Wir freuen uns sehr auf euch alle!</p>
+    </div>
     <div class="disclaimer">
       <span class="disclaimer-icon">🐾</span>
-      <span>Hunde sind herzlich willkommen!</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 34" width="18" height="24" fill="none" stroke="#3f5840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+        <ellipse cx="12" cy="10" rx="8" ry="9" fill="#3f5840" fill-opacity="0.15" stroke="#3f5840"/>
+        <path d="M10.5 19 Q12 21.5 13.5 19"/>
+        <path d="M12 22 Q9.5 26 11.5 29 Q14 26 12 34"/>
+      </svg>
+      <span>Hunde und Kinder sind herzlich willkommen!</span>
     </div>
   </header>
 
   <main>
+
+    <div class="section" id="countdown">
+      <h2>Countdown</h2>
+      <div class="divider"></div>
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">--</span>
+          <span class="countdown-label">Tage</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">--</span>
+          <span class="countdown-label">Stunden</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-minutes">--</span>
+          <span class="countdown-label">Minuten</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-seconds">--</span>
+          <span class="countdown-label">Sekunden</span>
+        </div>
+      </div>
+      <p class="countdown-sub">bis wir Ja sagen</p>
+    </div>
 
     <div class="section" id="ablauf">
       <h2>Ablauf des Tages</h2>
@@ -567,7 +789,11 @@
       <div class="timeline">
         <div class="tl-item">
           <span class="tl-time">11:00</span>
-          <div class="tl-line"></div>
+          <div class="tl-line">
+            <svg viewBox="0 0 24 12" width="22" height="22" fill="none" stroke="#657d65" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="7" cy="6" r="5"/><circle cx="17" cy="6" r="5"/>
+            </svg>
+          </div>
           <div class="tl-content">
             <strong>Standesamtliche Trauung</strong>
             <span>Standesamt Alzey · enge Familie</span>
@@ -575,79 +801,73 @@
         </div>
         <div class="tl-item">
           <span class="tl-time">13:00</span>
-          <div class="tl-line"></div>
+          <div class="tl-line">
+            <svg viewBox="0 0 20 16" width="22" height="22" fill="none" stroke="#657d65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="18" height="11" rx="2"/><circle cx="10" cy="9.5" r="3.2"/><rect x="6" y="1" width="8" height="3" rx="1"/><circle cx="16" cy="6.5" r="1" fill="#657d65" stroke="none"/>
+            </svg>
+          </div>
           <div class="tl-content">
             <strong>Fotoshooting</strong>
-            <span>On Location mit der Familie</span>
+            <span>On Location · Familie und Trauzeugen</span>
           </div>
         </div>
         <div class="tl-item">
           <span class="tl-time">14:30</span>
-          <div class="tl-line"></div>
+          <div class="tl-line">
+            <svg viewBox="0 0 22 20" width="22" height="22" fill="none" stroke="#657d65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Left flute -->
+              <path d="M4 2 L8 2 L7 9 L5 9 Z"/>
+              <line x1="6" y1="9" x2="6" y2="17"/>
+              <line x1="4.5" y1="17" x2="7.5" y2="17"/>
+              <!-- Right flute -->
+              <path d="M14 2 L18 2 L17 9 L15 9 Z"/>
+              <line x1="16" y1="9" x2="16" y2="17"/>
+              <line x1="14.5" y1="17" x2="17.5" y2="17"/>
+              <!-- Clink -->
+              <line x1="11" y1="1" x2="11" y2="3.5"/>
+              <line x1="9.75" y1="2.25" x2="12.25" y2="2.25"/>
+            </svg>
+          </div>
           <div class="tl-content">
             <strong>Sektempfang</strong>
-            <span>Steinmühle Osthofen</span>
+            <span>Steinmühle Osthofen · alle Gäste herzlich willkommen</span>
           </div>
         </div>
         <div class="tl-item">
           <span class="tl-time">16:00</span>
-          <div class="tl-line"></div>
+          <div class="tl-line">
+            <svg viewBox="0 0 20 18" width="22" height="22" fill="none" stroke="#657d65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="10" width="18" height="7" rx="1.5"/><path d="M4 10 L4 7 Q4 4 10 4 Q16 4 16 7 L16 10"/><line x1="10" y1="4" x2="10" y2="1"/><line x1="7" y1="2" x2="7" y2="4"/><line x1="13" y1="2" x2="13" y2="4"/><line x1="6" y1="10" x2="6" y2="17"/><line x1="10" y1="10" x2="10" y2="17"/><line x1="14" y1="10" x2="14" y2="17"/>
+            </svg>
+          </div>
           <div class="tl-content">
             <strong>Kaffee und Kuchen</strong>
-            <span>Steinmühle Osthofen</span>
           </div>
         </div>
         <div class="tl-item">
           <span class="tl-time">18:30</span>
-          <div class="tl-line"></div>
+          <div class="tl-line">
+            <svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="#657d65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Fork: 3 tines converging to handle -->
+              <line x1="5.5" y1="2" x2="5.5" y2="8"/>
+              <line x1="7" y1="2" x2="7" y2="8"/>
+              <line x1="8.5" y1="2" x2="8.5" y2="8"/>
+              <path d="M5.5 8 Q7 10 7 11 L7 20"/>
+              <path d="M8.5 8 Q7 10 7 11"/>
+              <!-- Knife: spine + curved blade -->
+              <line x1="14.5" y1="2" x2="14.5" y2="20"/>
+              <path d="M14.5 2 C16 2 17 5 16 9 L14.5 9"/>
+            </svg>
+          </div>
           <div class="tl-content">
             <strong>Abendessen</strong>
-            <span>Steinmühle Osthofen</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="section" id="menue">
-      <h2>Menü</h2>
-      <div class="divider"></div>
-      <p style="font-size:0.92rem;color:#555;font-weight:300;line-height:1.8;margin-bottom:20px">
-        Ein Foodtruck versorgt euch am Abend mit leckerem Essen – direkt vor Ort auf der Steinmühle.
-      </p>
-      <div class="speisekarte">
-        <div class="speisekarte-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="#879a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Bun top -->
-            <path d="M10 20 Q10 8 24 8 Q38 8 38 20 Z"/>
-            <!-- Sesame seeds -->
-            <circle cx="20" cy="14" r="1.2" fill="#879a84" stroke="none"/>
-            <circle cx="27" cy="12" r="1.2" fill="#879a84" stroke="none"/>
-            <circle cx="32" cy="16" r="1.2" fill="#879a84" stroke="none"/>
-            <!-- Lettuce -->
-            <path d="M8 22 Q14 19 20 22 Q26 25 32 22 Q38 19 40 22"/>
-            <!-- Patty -->
-            <rect x="9" y="24" width="30" height="5" rx="2.5"/>
-            <!-- Cheese -->
-            <path d="M8 29 L10 29 L40 29 L42 31 L8 31 Z"/>
-            <!-- Bun bottom -->
-            <path d="M9 31 Q9 40 24 40 Q39 40 39 31 Z"/>
-          </svg>
-        </div>
-        <div class="speisekarte-divider" style="margin-top:0"></div>
-        <ul class="speisekarte-list">
-          <li><span class="gericht">Classic Burger</span></li>
-          <li><span class="gericht">Currywurst</span></li>
-          <li><span class="gericht">Seitan Döner</span></li>
-          <li><span class="gericht">Philly Cheezesteak Sandwich</span></li>
-          <li><span class="gericht">Pommes</span></li>
-        </ul>
-        <div class="speisekarte-divider"></div>
-        <p class="speisekarte-hinweis">Alle Speisen sind vollständig vegan.</p>
-      </div>
-    </div>
-
     <div class="section" id="anfahrt">
-      <h2>Anfahrt</h2>
+      <h2>Locations</h2>
       <div class="divider"></div>
       <div class="anfahrt-grid">
 
@@ -672,22 +892,54 @@
           <p class="anfahrt-sub">Partylocation</p>
           <p class="anfahrt-addr">
             <strong>Steinmühle Osthofen</strong><br>
-            Eulenberg 39, 67574 Osthofen
+            Eulenberg 18, 67574 Osthofen
           </p>
           <div class="map-wrap map-square">
             <iframe
-              src="https://maps.google.com/maps?q=Weingut+Steinm%C3%BChle+Osthofen&output=embed&z=15"
+              src="https://maps.google.com/maps?q=Eulenberg+18+67574+Osthofen&output=embed&z=15"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
-          <a class="map-link" href="https://maps.google.com/?q=Weingut+Steinm%C3%BChle+Osthofen" target="_blank">In Google Maps öffnen →</a>
+          <a class="map-link" href="https://maps.google.com/?q=Eulenberg+18+67574+Osthofen" target="_blank">In Google Maps öffnen →</a>
           <p style="margin-top:12px;font-size:0.78rem;color:#999;font-weight:300;line-height:1.6">
             <strong style="color:#3f5840;font-weight:400">Parken:</strong> Direkt vor Ort sind nur begrenzt Stellplätze vorhanden. Wir empfehlen, auf den <strong style="font-weight:400">Stärkmühlweg</strong> auszuweichen.
           </p>
         </div>
 
+      </div>
+    </div>
+
+    <div class="section" id="menue">
+      <h2>Menü</h2>
+      <div class="divider"></div>
+      <p style="font-size:0.92rem;color:#555;font-weight:300;line-height:1.8;margin-bottom:20px">
+        Ein Foodtruck versorgt euch am Abend mit leckerem Essen – direkt vor Ort in der Steinmühle.
+      </p>
+      <div class="speisekarte">
+        <div class="speisekarte-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="#879a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 20 Q10 8 24 8 Q38 8 38 20 Z"/>
+            <circle cx="20" cy="14" r="1.2" fill="#879a84" stroke="none"/>
+            <circle cx="27" cy="12" r="1.2" fill="#879a84" stroke="none"/>
+            <circle cx="32" cy="16" r="1.2" fill="#879a84" stroke="none"/>
+            <path d="M8 22 Q14 19 20 22 Q26 25 32 22 Q38 19 40 22"/>
+            <rect x="9" y="24" width="30" height="5" rx="2.5"/>
+            <path d="M8 29 L10 29 L40 29 L42 31 L8 31 Z"/>
+            <path d="M9 31 Q9 40 24 40 Q39 40 39 31 Z"/>
+          </svg>
+        </div>
+        <div class="speisekarte-divider" style="margin-top:0"></div>
+        <ul class="speisekarte-list">
+          <li><span class="gericht">Classic Burger</span></li>
+          <li><span class="gericht">Currywurst</span></li>
+          <li><span class="gericht">Seitan Döner</span></li>
+          <li><span class="gericht">Philly Cheezesteak Sandwich</span></li>
+          <li><span class="gericht">Pommes</span></li>
+        </ul>
+        <div class="speisekarte-divider"></div>
+        <p class="speisekarte-hinweis">Alle Speisen sind vollständig vegan.</p>
       </div>
     </div>
 
@@ -716,10 +968,44 @@
       <p class="unterkuenfte-hinweis">Weitere Hotels gibt es z.&nbsp;B. in Worms – und auch Airbnbs in der näheren Umgebung sind verfügbar.</p>
     </div>
 
+    <div class="section" id="dresscode">
+      <h2>Dresscode</h2>
+      <div class="divider"></div>
+      <p>Ganz entspannt: Es gibt keinen Dresscode! Tragt einfach, worin ihr euch wohlfühlt. Zieht euch am besten sommerlich an, wir hoffen auf bestes Wetter und einen langen Abend draußen. Locker-festlich darf es gerne sein, muss es aber nicht.</p>
+      <p style="margin-top: 16px;">Nur eine kleine Bitte: Weiß darf an diesem Tag die Braut tragen.</p>
+    </div>
+
     <div class="section" id="wunschliste">
       <h2>Wunschliste</h2>
       <div class="divider"></div>
-      <div class="menu-placeholder">Unsere Wunschliste folgt in Kürze.</div>
+      <p>Das Schönste, was ihr uns mitbringen könnt, ist ein Beitrag zu unseren Flitterwochen. Wir freuen uns sehr über jeden Beitrag, egal wie groß.</p>
+      <p style="margin-top: 16px;">Wer lieber etwas Handfestes mag: Pflanzen für Wohnung und Garten sind immer willkommen!</p>
+    </div>
+
+    <div class="section" id="trauzeugen">
+      <h2>Trauzeugen</h2>
+      <div class="divider"></div>
+      <div class="trauzeugen-grid">
+
+        <div class="trauzeuge">
+          <div class="trauzeuge-foto" style="background-image: url('./Laurence.png')" role="img" aria-label="Laurence"></div>
+          <p class="trauzeuge-name">Laurence</p>
+          <div class="trauzeuge-card">
+            <p>Kurze Beschreibung</p>
+            <p style="margin-top:6px"><a href="tel:+49000000000">+49 000 000000</a></p>
+          </div>
+        </div>
+
+        <div class="trauzeuge">
+          <div class="trauzeuge-foto" style="background-image: url('./marcus.jpg')" role="img" aria-label="Marcus"></div>
+          <p class="trauzeuge-name">Marcus</p>
+          <div class="trauzeuge-card">
+            <p>Kurze Beschreibung</p>
+            <p style="margin-top:6px"><a href="tel:+49000000000">+49 000 000000</a></p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="section rsvp-box" id="rueckmeldung">
@@ -729,12 +1015,13 @@
       <div data-fs-success class="fs-success">Danke für eure Rückmeldung! Wir freuen uns auf euch.</div>
       <div data-fs-error></div>
       <form id="rsvp-form" class="rsvp-form" action="https://formspree.io/f/xaqlapbz" method="POST">
-        <input type="text" name="name" placeholder="Dein/Euer Name" required data-fs-field>
+        <input type="text" name="name" placeholder="Dein/Eure Name(n)" required data-fs-field>
         <span data-fs-error="name"></span>
         <div class="radio-group">
-          <label><input type="radio" name="antwort" value="Zusage" required> Wir/Ich komme/n gerne.</label>
-          <label><input type="radio" name="antwort" value="Absage"> Leider können wir/ich nicht kommen.</label>
+          <label><input type="radio" name="antwort" value="Zusage" required> Wir sind dabei!</label>
+          <label><input type="radio" name="antwort" value="Absage"> Wir müssen leider absagen.</label>
         </div>
+        <p class="rsvp-label" style="margin-bottom:0;text-align:left">Bitte trage ein, wie viele Personen kommen.</p>
         <div class="anzahl-row">
           <div class="anzahl-field">
             <p class="rsvp-label">Erwachsene</p>
@@ -754,12 +1041,47 @@
       </form>
     </div>
 
+    <div class="section" id="kontakt">
+      <h2>Kontakt</h2>
+      <div class="divider"></div>
+      <div class="kontakt-card">
+        <p><strong>Yannick Proegler &amp; Julia Richter</strong></p>
+        <p>Dresdener Straße 5<br>67582 Mettenheim</p>
+        <p>
+          <a href="tel:+491729748548">+49 172 974 85 48</a> (Yannick)<br>
+          <a href="tel:+4915735627553">+49 1573 562 7553</a> (Julia)
+        </p>
+      </div>
+    </div>
+
   </main>
 
   <footer>
     <em>Julia & Yannick</em> · 2026
   </footer>
 
+  <script>
+    (function() {
+      var target = new Date('2026-09-12T11:00:00');
+      function update() {
+        var now = new Date();
+        var diff = target - now;
+        if (diff <= 0) {
+          document.getElementById('cd-days').textContent    = '0';
+          document.getElementById('cd-hours').textContent   = '0';
+          document.getElementById('cd-minutes').textContent = '0';
+          document.getElementById('cd-seconds').textContent = '0';
+          return;
+        }
+        document.getElementById('cd-days').textContent    = Math.floor(diff / 86400000);
+        document.getElementById('cd-hours').textContent   = Math.floor((diff % 86400000) / 3600000);
+        document.getElementById('cd-minutes').textContent = Math.floor((diff % 3600000) / 60000);
+        document.getElementById('cd-seconds').textContent = Math.floor((diff % 60000) / 1000);
+      }
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#rsvp-form', formId: 'xaqlapbz' });
