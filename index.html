@@ -21,13 +21,18 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(245, 247, 242, 0.92);
+      background: rgba(245, 247, 242, 0.96);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid #d8dece;
+    }
+
+    .nav-inner {
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 8px;
       padding: 0 16px;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -46,6 +51,74 @@
     nav a:hover {
       color: #3f5840;
       border-bottom-color: #879a84;
+    }
+
+    /* Hamburger */
+    .nav-burger {
+      display: none;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #454d31;
+    }
+
+    .nav-burger-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-burger-icon span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #3f5840;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-open .nav-burger-icon span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-open .nav-burger-icon span:nth-child(2) { opacity: 0; }
+    .nav-open .nav-burger-icon span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    @media (max-width: 680px) {
+      .nav-burger { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        border-top: 1px solid #d8dece;
+        padding: 8px 0;
+      }
+
+      .nav-open .nav-links { display: flex; }
+
+      .nav-links a {
+        padding: 12px 24px;
+        border-bottom: none;
+        border-left: 2px solid transparent;
+        font-size: 0.8rem;
+      }
+
+      .nav-links a:hover {
+        border-left-color: #879a84;
+        border-bottom: none;
+        background: #edf0ea;
+      }
     }
 
     header {
@@ -718,18 +791,26 @@
 </head>
 <body>
 
-  <nav>
-    <a href="#top">Start</a>
-    <a href="#countdown">Countdown</a>
-    <a href="#ablauf">Ablauf</a>
-    <a href="#anfahrt">Locations</a>
-    <a href="#menue">Menü</a>
-    <a href="#unterkuenfte">Unterkünfte</a>
-    <a href="#dresscode">Dresscode</a>
-    <a href="#wunschliste">Wunschliste</a>
-    <a href="#trauzeugen">Trauzeugen</a>
-    <a href="#rueckmeldung">Rückmeldung</a>
-    <a href="#kontakt">Kontakt</a>
+  <nav id="main-nav">
+    <button class="nav-burger" onclick="document.getElementById('main-nav').classList.toggle('nav-open')" aria-label="Menü öffnen">
+      <span>Julia &amp; Yannick</span>
+      <span class="nav-burger-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+    <div class="nav-links">
+      <a href="#top">Start</a>
+      <a href="#countdown">Countdown</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#anfahrt">Locations</a>
+      <a href="#menue">Menü</a>
+      <a href="#unterkuenfte">Unterkünfte</a>
+      <a href="#dresscode">Dresscode</a>
+      <a href="#wunschliste">Wunschliste</a>
+      <a href="#trauzeugen">Trauzeugen</a>
+      <a href="#rueckmeldung">Rückmeldung</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
   </nav>
 
   <header id="top">
@@ -1087,6 +1168,13 @@
     formspree('initForm', { formElement: '#rsvp-form', formId: 'xaqlapbz' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  <script>
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('main-nav').classList.remove('nav-open');
+      });
+    });
+  </script>
 
 </body>
 </html>
