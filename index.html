@@ -497,9 +497,13 @@
 
     .anfahrt-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 8px;
+    }
+
+    @media (min-width: 540px) {
+      .anfahrt-grid { grid-template-columns: 1fr 1fr; }
     }
 
     .anfahrt-card {
